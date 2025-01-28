@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Gradient AI</div>
+        <div class="nav-links">
+            <a href="https://github.com" target="_blank">GitHub</a>
+            <a href="https://www.notion.so/Projects-Tasks-185464afb03380a287f7e0e76c8c6e09?pvs=4" target="_blank">Notion</a>
+        </div>
+    </nav>
+    <main>
+        <div id="chat-history"></div>
+        <div id="chat-container">
+            <div id="chatbox">
+                <form id="chat-form">
+                    <input type="text" id="chat-input" placeholder="Type a message...">
+                    <button type="submit" id="send-btn"></button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script>
+        const userProfilePic = "{% static 'images/userpfp.webp' %}";
+        const botProfilePic = "{% static 'images/botpfp.webp' %}";
+    </script>
+    <script src="{% static 'script.js' %}"></script>
+    <script>
+        let isSubmitting = false;
+
+        function handleResponse(response) {
+            const chatHistory = document.getElementById('chat-history');
+            const message = document.createElement('div');
+            message.className = 'message ai';
+            message.innerHTML = `<img src="${botProfilePic}"><div class="text">${response.response}</div>`;
+            chatHistory.appendChild(message);
+            chatHistory.scrollTop = chatHistory.scrollHeight; // Scroll to the bottom
+            isSubmitting = false; // Reset the flag after handling the response
+        }
+
+        document.getElementById('chat-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (isSubmitting) {
+                return; // Prevent multiple submissions
+            }
+            isSubmitting = true;
+
+            const input = document.getElementById('chat-input');
+            const prompt = input.value.trim();
+            if (prompt === '') {
+                isSubmitting = false;
+                return; // Do not send an empty prompt
+            }
+            input.value = '';
+
+            const chatHistory = document.getElementById('chat-history');
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user';
+            userMessage.innerHTML = `<div class="text">${prompt}</div><img src="${userProfilePic}">`;
+            chatHistory.appendChild(userMessage);
+            chatHistory.scrollTop = chatHistory.scrollHeight; // Scroll to the bottom
+
+            fetch('/chat/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prompt: prompt })
+            })
+            .then(response => response.json())
+            .then(data => handleResponse(data))
+            .catch(error => {
+                console.error('Error:', error);
+                isSubmitting = false; // Reset the flag in case of error
+            });
+        });
+    </script>
+</body>
+</html>

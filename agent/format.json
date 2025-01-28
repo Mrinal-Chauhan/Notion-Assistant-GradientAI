@@ -1,0 +1,85 @@
+{
+    "Projects Database": {
+
+        "Project name": ["project name"],
+
+        "Owner": {
+            "id": "[ownerid]",
+            "type": "people",
+            "people": [
+                {
+                    "object": "user",
+                    "id": "[userid]"
+                }
+            ]
+        },
+
+        "Status": {
+            "id": "[statusid]",
+            "type": "status",
+            "status": {
+                "id": "[id]",
+                "name": "name",
+                "color": "color"
+            }
+        },
+
+        "Completion": {
+            "id": "[id]",
+            "type": "rollup",
+            "rollup": {
+                "type": "number",
+                "number": null,
+                "function": "percent_per_group"
+            }
+        },
+
+        "Priority": "[priority]",
+
+        "Dates": "[dates]",
+
+        "Summary": "[summary]",
+        
+        "Tasks": {
+            "id": "[id]",
+            "type": "relation",
+            "relation": [],
+            "has_more": "[has_more]"
+        }
+    },
+
+    "Tasks Database": {
+        "Task name": "Task 1",
+        "Assignee": {
+            "id": "[Assignee id]",
+            "type": "people",
+            "people": [
+                {
+                    "object": "user",
+                    "id": "3968cba6-7e7f-4cba-8c37-674de301ea6d"
+                }
+            ]
+        },
+        "Status": {
+            "id": "notion%3A%2F%2Ftasks%2Fstatus_property",
+            "type": "status",
+            "status": {
+                "id": "done",
+                "name": "Done",
+                "color": "green"
+            }
+        },
+        "Due": "2024-05-29",
+        "Priority": "Low",
+        "Projects": {
+            "id": "notion%3A%2F%2Ftasks%2Ftask_to_project_relation",
+            "type": "relation",
+            "relation": [
+                {
+                    "id": "185464af-b033-81e9-8ea6-f799da4d3f58"
+                }
+            ],
+            "has_more": false
+        }
+    }
+}
