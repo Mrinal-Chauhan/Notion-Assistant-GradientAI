@@ -11,7 +11,7 @@
     <nav class="navbar">
         <div class="nav-brand">Gradient AI</div>
         <div class="nav-links">
-            <a href="https://github.com" target="_blank">GitHub</a>
+            <a href="https://github.com/Mrinal-Chauhan" target="_blank">GitHub</a>
             <a href="https://www.notion.so/Projects-Tasks-185464afb03380a287f7e0e76c8c6e09?pvs=4" target="_blank">Notion</a>
         </div>
     </nav>
@@ -40,14 +40,14 @@
             message.className = 'message ai';
             message.innerHTML = `<img src="${botProfilePic}"><div class="text">${response.response}</div>`;
             chatHistory.appendChild(message);
-            chatHistory.scrollTop = chatHistory.scrollHeight; // Scroll to the bottom
-            isSubmitting = false; // Reset the flag after handling the response
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+            isSubmitting = false;
         }
 
         document.getElementById('chat-form').addEventListener('submit', function(event) {
             event.preventDefault();
             if (isSubmitting) {
-                return; // Prevent multiple submissions
+                return;
             }
             isSubmitting = true;
 
@@ -55,7 +55,7 @@
             const prompt = input.value.trim();
             if (prompt === '') {
                 isSubmitting = false;
-                return; // Do not send an empty prompt
+                return;
             }
             input.value = '';
 
@@ -64,7 +64,7 @@
             userMessage.className = 'message user';
             userMessage.innerHTML = `<div class="text">${prompt}</div><img src="${userProfilePic}">`;
             chatHistory.appendChild(userMessage);
-            chatHistory.scrollTop = chatHistory.scrollHeight; // Scroll to the bottom
+            chatHistory.scrollTop = chatHistory.scrollHeight;
 
             fetch('/chat/', {
                 method: 'POST',
@@ -77,7 +77,7 @@
             .then(data => handleResponse(data))
             .catch(error => {
                 console.error('Error:', error);
-                isSubmitting = false; // Reset the flag in case of error
+                isSubmitting = false;
             });
         });
     </script>

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sendBtn.addEventListener('click', sendMessage);
     chatInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
-            e.preventDefault(); // Prevent form submission on Enter key
+            e.preventDefault();
             sendMessage();
         }
     });
