@@ -24,13 +24,13 @@ To use GradientAI, follow these steps:
     ```bash
     git clone https://github.com/Mrinal-Chauhan/Notion-Assistant-GradientAI.git
     ```
-2. Navigate to the project directory:
+2. Navigate to the django directory:
     ```bash
-    cd GradientAI
+    cd django_server
     ```
-3. Run the main script:
+3. Run the server:
     ```bash
-    python main.py
+    python manage.py runserver
     ```
 
 ## Contributing 🤝
