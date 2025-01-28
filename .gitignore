@@ -12,6 +12,6 @@ venv/
 db.sqlite3
 
 # Ignore test files
-test.py
+tests/
 
 agent/azent
