@@ -135,11 +135,11 @@ h1 {
 }
 
 .message.user img {
-    background-image: url("{% static 'images/userpfp.webp' %}");  /* Adjust path as needed */
+    background-image: url('../images/userpfp.webp');  /* Adjust path as needed */
 }
 
 .message.ai img {
-    background-image: url("{% static 'images/botpfp.webp' %}");  /* Adjust path as needed */
+    background-image: url('../images/botpfp.webp');  /* Adjust path as needed */
 }
 
 .message .text {
