@@ -6,7 +6,6 @@ import json
 from dotenv import load_dotenv
 from pathlib import Path
 from agent.sysprompt import SYSTEM_PROMPT
-import logging
 
 
 # Add the project root to Python path for Django to work
